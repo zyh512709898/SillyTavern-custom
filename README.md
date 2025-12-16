@@ -44,3 +44,11 @@ git merge main
 
 # 3. 将合并后的结果推送到你的仓库
 git push origin custom
+
+
+
+唯一源头：你的个人GitHub仓库（origin）是服务器代码的唯一来源。
+
+单向同步：服务器仅执行 git pull（拉取），不执行 git commit、git push 或 git merge 等写入操作。
+
+分支简化：服务器只需一个 custom 分支，与你发布的版本保持绝对同步。main 分支在服务器上非必需。
