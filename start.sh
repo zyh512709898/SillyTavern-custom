@@ -29,4 +29,16 @@ export NODE_ENV=production
 npm i --no-save --no-audit --no-fund --loglevel=error --no-progress --omit=dev
 
 echo "Entering SillyTavern..."
-node "server.js" "$@"
+# 修改从这里开始
+CMD="HOST=0.0.0.0 PORT=8000 node \"server.js\" $@"
+
+echo "Starting SillyTavern in background mode..."
+nohup sh -c "$CMD" > server.log 2>&1 &
+PID=$!
+echo $PID > server.pid
+
+echo "? Started successfully!"
+echo "?? Process PID: $PID (saved to server.pid)"
+echo "?? Log file: ./server.log"
+echo "?? View logs: tail -f server.log"
+echo "?? Stop service: kill $PID"
